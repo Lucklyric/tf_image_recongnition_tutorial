@@ -15,11 +15,11 @@ def get_dominant_colors(img, rects):
     """Return dominat colors from a list of rectangles according to a given image
     
     Args:
-        img (numpy array): uint8 numpy array with RGB color format
+        img (numpy array): input image as 3 channels uint8 numpy array
         rets (numpy array): a list of rectangles with format of [ [x, y, width, height], [...], [...] ]
     
     Returns:
-        list: a list of colors (R, G, B) following the same order of rectangles
+        list: a list of colors (C1, C2, C3) following the same order of rectangles
     """
 
     d_colors = []
@@ -53,9 +53,10 @@ if __name__ == "__main__":
     r = cv2.selectROI(img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-    img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
     colors = get_dominant_colors(img,[r])
-    z = np.ones((40,40,3),dtype="uint8")*colors[0]
-    plt.imshow(z),plt.show()
+    sample_color = np.ones((200,200,3),dtype="uint8")*colors[0]
+    cv2.imshow("sample color",sample_color)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
